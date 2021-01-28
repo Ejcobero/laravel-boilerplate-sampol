@@ -1,0 +1,26 @@
+<?php
+
+use App\Http\Controllers\API\Auth\SocialiteAuthController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+$router->get('verified', function() {
+    return view('verification.verified');
+})->name('verification.verified');
+
+$router->get('oauth/login/{provider}', [SocialiteAuthController::class, 'redirectToProvider']);
+$router->get('oauth/login/{provider}/callback', [SocialiteAuthController::class, 'handleProviderCallback']);
